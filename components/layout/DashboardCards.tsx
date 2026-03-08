@@ -3,12 +3,12 @@
 import AddResume from "@/components/common/AddResume";
 import ResumeCard from "@/components/common/ResumeCard";
 import { fetchUserResumes } from "@/lib/actions/resume.actions";
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/context/AuthContext";
 import React, { useEffect, useState } from "react";
 
 const DashboardCards = () => {
-  const user = useUser();
-  const userId = user?.user?.id;
+  const { user, loading } = useAuth();
+  const userId = user?.uid;
   const [resumeList, setResumeList] = useState(null as any);
 
   const loadResumeData = async () => {
@@ -22,8 +22,14 @@ const DashboardCards = () => {
   };
 
   useEffect(() => {
-    user?.isSignedIn && loadResumeData();
-  }, [user?.isLoaded]);
+    if (!loading && user) {
+        loadResumeData();
+    }
+  }, [user, loading]);
+
+  if (loading) {
+      return <div>Loading dashboard...</div>; // Could be a skeleton loader here
+  }
 
   return (
     <>

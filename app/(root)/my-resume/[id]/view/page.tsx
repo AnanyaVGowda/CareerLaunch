@@ -1,11 +1,7 @@
 import FinalResumeView from "@/components/layout/ResumeView";
 import React from "react";
 import { Metadata } from "next";
-import {
-  checkResumeOwnership,
-  fetchResume,
-} from "@/lib/actions/resume.actions";
-import { currentUser } from "@clerk/nextjs/server";
+import { fetchResume } from "@/lib/actions/resume.actions";
 
 export async function generateMetadata({
   params,
@@ -17,24 +13,21 @@ export async function generateMetadata({
 
   if (resume?.firstName === undefined && resume?.lastName === undefined) {
     return {
-      title: "ResumeAI - Professional AI Resume Builder",
+      title: "CareerLaunch - Professional AI Resume Builder",
       description:
         "Generate a polished, professional resume in just a few clicks with our AI-powered resume builder.",
     };
   }
 
   return {
-    title: `${resume?.firstName}${resume?.firstName && " "}
-    ${resume?.lastName}${resume?.lastName && " "}- ResumeAI`,
-    description: `${resume?.firstName} ${resume?.lastName}'s Resume. Powered by ResumeAI.`,
+    title: `${resume?.firstName}${resume?.firstName && " "}${resume?.lastName}${resume?.lastName && " "} - CareerLaunch`,
+    description: `${resume?.firstName} ${resume?.lastName}'s Resume. Powered by CareerLaunch.`,
   };
 }
 
 const MyResume = async ({ params }: { params: { id: string } }) => {
-  const user = await currentUser();
-  const isResumeOwner = await checkResumeOwnership(user?.id || "", params.id);
-
-  return <FinalResumeView params={params} isOwnerView={isResumeOwner} />;
+  // Pass params down, the client component FinalResumeView can check ownership
+  return <FinalResumeView params={params} />;
 };
 
 export default MyResume;
