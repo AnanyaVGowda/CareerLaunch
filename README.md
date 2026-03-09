@@ -71,9 +71,11 @@ To get your Firebase configuration details:
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
 Created with ❤️ by Ananya
+
+<img width="1869" height="891" alt="Screenshot 2026-03-09 231732" src="https://github.com/user-attachments/assets/26557a55-f4d7-4f0e-a812-0e0298695876" />
+
+<img width="1889" height="771" alt="Screenshot 2026-03-09 231843" src="https://github.com/user-attachments/assets/611725a1-ce39-487f-8e19-2facaddce6de" />
+
+
